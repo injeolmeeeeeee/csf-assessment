@@ -1,21 +1,22 @@
 FROM node:21 as builder
 
-RUN npm i -g @angular/cli
+WORKDIR /builder/client
 
-WORKDIR /builder
+COPY client/*.json .
 
-COPY *.json .
-COPY src .
+RUN npm install -g @angular/cli
+
+COPY client .
 
 RUN npm ci && ng build
 
-
 FROM node:21
 
-RUN npm i -g http-server
+RUN npm install -g http-server
 
 WORKDIR /app
-COPY --from=builder /builder/ecommerce/dist/client/browser/ . 
+
+COPY --from=builder /builder/client/dist/client-side/browser .
 
 ENV PORT=8080
 

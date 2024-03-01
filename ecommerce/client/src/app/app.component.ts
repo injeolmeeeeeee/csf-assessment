@@ -1,5 +1,4 @@
 import { Component, OnInit, inject } from '@angular/core';
-import {Observable} from 'rxjs';
 import {Router} from '@angular/router';
 import { Cart } from './models';
 
