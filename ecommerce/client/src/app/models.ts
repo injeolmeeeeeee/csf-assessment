@@ -20,6 +20,7 @@ export interface LineItem {
 }
 
 export interface Cart {
+  push(lineItem: LineItem): unknown
   lineItems: LineItem[]
 }
 
